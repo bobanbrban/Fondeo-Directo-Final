@@ -14,22 +14,21 @@ const API = 'https://raw.githubusercontent.com/bobanbrban/bobanetest/master/mail
 
 
 class Inbox extends React.Component {
-  
+
 
   constructor(){
     super();
     this.state = {
-      MailList:[]
+      MailList:[],
     }
   }
-
 
   getMailList(){
      fetch(API)
       .then(response => response.json())
       .then(data => this.setState({MailList: data}, function(){
-          console.log(this.state);
-        }).bind(this),
+          console.log();
+        }),
       );
   }
 
@@ -39,10 +38,15 @@ class Inbox extends React.Component {
  }
 
  componentDidMount(){
-   this.getMailList = setInterval((MailList) => {this.state.MailList},90000);
+
+             let MailList =  this.getMailList();
+             setInterval(function(){() => {this.MailList.bind(this)}
+               console.log(this.getMailList)
+             },3000);
+}
 
 
-  }
+
 
 
   //   handleDeleteMailList(i){
@@ -61,18 +65,15 @@ class Inbox extends React.Component {
       return (
             <div>
               <ul>
-                  <MailList MailList={this.state.MailList}/>
-                  <MailList MailList={this.state.MailList}/>
-                  <MailList MailList={this.state.MailList}/>
-                  <MailList MailList={this.state.MailList}/>
-                  <MailList MailList={this.state.MailList}/>
-                  <MailList MailList={this.state.MailList}/>
-                  <MailList MailList={this.state.MailList}/>
+
+              <MailList MailList={this.state.MailList}/>
+              <MailList MailList={this.state.MailList}/>
+              <MailList MailList={this.state.MailList}/>
 
 
               </ul>
               <img src={MailImage} className="MailPic" width="250px height=250px" alt="logo" />
-              <MailList />  
+              <MailList />
            </div>
         );
     }
